@@ -1,4 +1,4 @@
-const API_URL = "https://research-buddy-2.onrender.com/";
+const API_URL = "https://research-buddy-2.onrender.com";
 
 
 export async function askQuestion(question) {
