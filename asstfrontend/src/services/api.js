@@ -1,4 +1,4 @@
-const API_URL = "https://research-buddy-3oyp.vercel.app/";
+const API_URL = "https://research-buddy-2.onrender.com/";
 
 
 export async function askQuestion(question) {

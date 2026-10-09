@@ -13,7 +13,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://research-buddy-nu.vercel.app/",
-        "https://research-buddy-3oyp.vercel.app/"
+        "https://research-buddy-2.onrender.com/"
     ],
     allow_credentials=True,
     allow_methods=["*"],
