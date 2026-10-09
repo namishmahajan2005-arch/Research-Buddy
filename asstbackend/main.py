@@ -13,7 +13,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://research-buddy-nu.vercel.app/",
-        "http://127.0.0.1:5173"
+        "https://research-buddy-3oyp.vercel.app/"
     ],
     allow_credentials=True,
     allow_methods=["*"],
