@@ -1,0 +1,18 @@
+# Python environment
+aivenv/
+
+# Python generated files
+__pycache__/
+*.pyc
+
+# Secrets
+.env
+
+# Chroma generated database
+storage/chroma/
+
+# React dependencies
+node_modules/
+
+# React build
+dist/
