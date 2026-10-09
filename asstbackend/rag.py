@@ -64,7 +64,40 @@ Answer:
 """
 )
 
+def delete_pdf(filename):
+    results = vectorstore.get(
+        where={"source": filename},
+        include=["metadatas"]
+    )
+    ids = results["ids"]
+    
+    if ids:
+        vectorstore.delete(ids=ids)
+        print(f"Deleted {len(ids)} chunks for {filename}")
+
+    file_path = os.path.join("data", filename)
+
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        print(f"Deleted PDF: {filename}")
+
 def process_pdf(file_path):
+    data_path="data"
+    os.makedirs(data_path, exist_ok=True)
+
+    filename = os.path.basename(file_path)
+
+    pdf_files = sorted(
+        [
+            f for f in os.listdir(data_path)
+            if f.lower().endswith(".pdf")
+        ],
+        key=lambda f: os.path.getctime(os.path.join(data_path, f))
+    )
+
+    if filename not in pdf_files and len(pdf_files) >= 3:
+        oldest_pdf = pdf_files[0]
+        delete_pdf(oldest_pdf)
 
     documents = []
 
@@ -90,7 +123,6 @@ def process_pdf(file_path):
     print(f"Loaded {len(documents)} pages")
 
     if not documents:
-
         raise ValueError(
             "No usable text was extracted from the PDF."
         )
@@ -100,7 +132,6 @@ def process_pdf(file_path):
     print(f"Created {len(chunks)} chunks")
 
     if not chunks:
-
         raise ValueError(
             "No text chunks were created from the PDF."
         )
